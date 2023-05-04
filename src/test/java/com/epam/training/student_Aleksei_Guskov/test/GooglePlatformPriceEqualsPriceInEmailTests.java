@@ -4,7 +4,7 @@ import com.epam.training.student_Aleksei_Guskov.page.PageWhitEmailGenerator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GooglePlatformPriceEqualsPriceInEmailTest extends CommonConditions{
+public class GooglePlatformPriceEqualsPriceInEmailTests extends CommonConditions{
     @Test
     public void testOfEqualsPriceInMailAndInGoogle() throws InterruptedException {
         sendEmailOnTemporaryMail();
