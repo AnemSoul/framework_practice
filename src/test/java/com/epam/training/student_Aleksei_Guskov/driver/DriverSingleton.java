@@ -5,22 +5,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverSingleton {
-
     private static final String RESOURCES_PATH = "src\\test\\resources\\";
     private static WebDriver driver;
-
-
-    private DriverSingleton(){}
-
-    public static WebDriver getDriver(){
-        if (null == driver){
-            switch (System.getProperty("browser")){
+    private DriverSingleton() {}
+    public static WebDriver getDriver() {
+        if (null == driver) {
+            switch (System.getProperty("browser")) {
                 case "firefox": {
-                    System.setProperty("webdriver.gecko.driver", RESOURCES_PATH + "geckodriver.exe");
+                    System.setProperty("webdriver.firefox.bin", "C:\\Program Files\\Mozilla Firefox\\firefox.exe");
                     driver = new FirefoxDriver();
                 }
                 default: {
-                    System.setProperty("webdriver.chrome.driver", RESOURCES_PATH + "chromedriver.exe");
                     driver = new ChromeDriver();
                 }
             }
@@ -28,8 +23,7 @@ public class DriverSingleton {
         }
         return driver;
     }
-
-    public static void closeDriver(){
+    public static void closeDriver() {
         driver.quit();
         driver = null;
     }
