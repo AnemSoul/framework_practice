@@ -18,7 +18,12 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.6</version>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.3.2</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -50,6 +55,16 @@
             <version>4.8.3</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.12.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.12.4</version>
+        </dependency>
     </dependencies>
     <build>
         <defaultGoal>install</defaultGoal>
@@ -66,7 +81,7 @@
                 <configuration>
                     <source>11</source>
                     <target>11</target>
-                    <!-- The semantics of this option are reversed, see MCOMPILER-209. -->
+                    <!-- The semantics of this option are reversed, see COMPILER-209. -->
                     <useIncrementalCompilation>false</useIncrementalCompilation>
                     <compilerArgs>
                         <!-- The output of Xlint is not shown by default, but we activate it for the QA bot

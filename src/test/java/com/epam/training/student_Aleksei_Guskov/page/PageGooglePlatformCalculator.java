@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static com.epam.training.student_Aleksei_Guskov.service.NumberOfInstanceChoice.withCredentialsFromProperty;
+
 public class PageGooglePlatformCalculator {
     protected WebDriver driver;
     @FindBy (xpath = "//*[@id='cloud-site']/devsite-iframe/iframe")
@@ -71,8 +73,8 @@ public class PageGooglePlatformCalculator {
         this.computeEngineButton.click();
         return this;
     }
-    public PageGooglePlatformCalculator inputNumberOfInstances(String instancesValue) {
-        this.areaNumberOfInstances.sendKeys(instancesValue);
+    public PageGooglePlatformCalculator inputNumberOfInstances() {
+        this.areaNumberOfInstances.sendKeys(withCredentialsFromProperty().getNumberOfInstance());
         return new PageGooglePlatformCalculator(this.driver);
     }
     public PageGooglePlatformCalculator selectFreeOperatingSystem() {
