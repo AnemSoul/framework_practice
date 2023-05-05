@@ -1,5 +1,6 @@
 package com.epam.training.student_Aleksei_Guskov.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static com.epam.training.student_Aleksei_Guskov.service.NumberOfInstanceChoice.withCredentialsFromProperty;
+import static com.epam.training.student_Aleksei_Guskov.service.VariantsChoice.withCredentialsFromProperty;
 
 public class PageGooglePlatformCalculator {
     protected WebDriver driver;
@@ -22,8 +23,6 @@ public class PageGooglePlatformCalculator {
     private WebElement areaNumberOfInstances;
     @FindBy (xpath = "//md-select[@ng-model='listingCtrl.computeServer.os']/md-select-value")
     private WebElement selectorOfOperatingSystem;
-    @FindBy (xpath = "//div/md-select-menu/md-content/md-option[@value='free']")
-    private WebElement freeOperatingSystemVariant;
     @FindBy (xpath = "//md-select[@placeholder='VM Class']/md-select-value")
     private WebElement selectorProvisioningModel;
     @FindBy (xpath = "//div/md-select-menu/md-content/md-option[@value='regular']")
@@ -79,7 +78,8 @@ public class PageGooglePlatformCalculator {
     }
     public PageGooglePlatformCalculator selectFreeOperatingSystem() {
         this.selectorOfOperatingSystem.click();
-        this.freeOperatingSystemVariant.click();
+        WebElement operatingSystem = driver.findElement(By.xpath(withCredentialsFromProperty().getOperatingSystemXPath()));
+        operatingSystem.click();
         return this;
     }
     public PageGooglePlatformCalculator selectRegularProvisioningModel() {

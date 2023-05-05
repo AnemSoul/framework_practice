@@ -15,6 +15,13 @@ public class CommonConditions {
     protected WebDriver driver;
 
     private static final String SEARCHING_TEXT= "Google Cloud Platform Pricing Calculator";
+    static final String PROVISIONING_MODEL = "Provisioning model: Regular";
+    static final String INSTANCE_TYPE = "Instance type: n1-standard-8\n" +
+            "Committed Use Discount applied";
+    static final String REGION = "Region: Frankfurt";
+    static final String LOCAL_SSD = "Local SSD: 2x375 GiB\n" +
+            "Committed Use Discount applied";
+    static final String COMMITMENT_TERM = "Commitment term: 1 Year";
     @BeforeMethod(alwaysRun = true)
     public void browserSetup() {
         driver = DriverSingleton.getDriver();
