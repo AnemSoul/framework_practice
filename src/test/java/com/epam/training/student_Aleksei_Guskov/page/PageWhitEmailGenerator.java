@@ -87,7 +87,7 @@ public class PageWhitEmailGenerator {
         return this;
     }
     public PageWhitEmailGenerator checkTheMailButtonClick() throws InterruptedException {
-        Thread.sleep(2500);
+        Thread.sleep(3500);
         this.buttonCheckTheMail.click();
         return this;
     }
