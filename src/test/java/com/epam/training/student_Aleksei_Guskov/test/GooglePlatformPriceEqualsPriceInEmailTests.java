@@ -12,6 +12,6 @@ public class GooglePlatformPriceEqualsPriceInEmailTests extends CommonConditions
         String priceFromMail = pageWhitEmailGenerator.getTextFromEmail();
         pageWhitEmailGenerator.returnToTheGooglePage();
         String priceFromGooglePage = pageWhitEmailGenerator.getTexFromTotalEstimated();
-        Assert.assertEquals(priceFromMail, priceFromGooglePage);
+        Assert.assertEquals(priceFromMail, priceFromGooglePage, "price is not actual");
     }
 }
