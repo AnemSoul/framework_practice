@@ -13,6 +13,9 @@ import static com.epam.training.student_Aleksei_Guskov.service.VariantsChoice.wi
 
 public class PageGooglePlatformCalculator {
     protected WebDriver driver;
+    private String xPathForOperationSystem = "//div/md-select-menu/md-content/md-option[@value='" + withCredentialsFromProperty().getOperatingSystemXPath() + "']";
+    private String xPathForSSDAmount = "//md-option[@ng-repeat='item in listingCtrl.dynamicSsd.computeServer'][@value='" + withCredentialsFromProperty().getLocalSSDAmount() + "']";
+    private String xPathForCommittedYear = "//md-option[@value='" + withCredentialsFromProperty().getCommittedUsage() + "'][@class='md-ink-ripple'][@aria-selected='false']";
     @FindBy (xpath = "//*[@id='cloud-site']/devsite-iframe/iframe")
     private WebElement firstFrameOnPage;
     @FindBy (xpath = "//*[@id='myFrame']")
@@ -47,16 +50,12 @@ public class PageGooglePlatformCalculator {
     private WebElement selectNumberOfGPUsOne;
     @FindBy (xpath = "//md-select[@ng-model='listingCtrl.computeServer.ssd']")
     private WebElement selectorOfSSDOptions;
-    @FindBy (xpath = "//md-option[@ng-repeat='item in listingCtrl.dynamicSsd.computeServer'][@value='2']")
-    private WebElement selectSecondSSDOption;
     @FindBy (xpath = "//md-select[@ng-model='listingCtrl.computeServer.location']")
     private WebElement datacenterLocationOptions;
     @FindBy (xpath = "//md-option[@value='europe-west3'][@ng-repeat='item in listingCtrl.fullRegionList | filter:listingCtrl.inputRegionText.computeServer']")
     private WebElement selectEuropeWestThirdOption;
     @FindBy (xpath = "//md-select[@ng-disabled='listingCtrl.isCudDisabled']")
     private WebElement committedUsageSelector;
-    @FindBy (xpath = "//md-option[@ng-value='1'][@value='1'][@class='md-ink-ripple'][@id='select_option_134']")
-    private WebElement oneYearOptionForCommittedUsage;
     @FindBy (xpath = "//div/button[@ng-click='listingCtrl.addComputeServer(ComputeEngineForm);']")
     private WebElement addToEstimateButton;
 
@@ -78,13 +77,13 @@ public class PageGooglePlatformCalculator {
     }
     public PageGooglePlatformCalculator selectFreeOperatingSystem() {
         this.selectorOfOperatingSystem.click();
-        WebElement operatingSystem = driver.findElement(By.xpath(withCredentialsFromProperty().getOperatingSystemXPath()));
+        WebElement operatingSystem = driver.findElement(By.xpath(xPathForOperationSystem));
         operatingSystem.click();
         return this;
     }
     public PageGooglePlatformCalculator selectRegularProvisioningModel() {
         this.selectorProvisioningModel.click();
-        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(3));
+        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(5));
         webDriverWait.until(webDriver -> regularProvisioningModel.isDisplayed());
         this.regularProvisioningModel.click();
         return this;
@@ -92,7 +91,7 @@ public class PageGooglePlatformCalculator {
     public PageGooglePlatformCalculator selectNOneSeries() throws InterruptedException {
         this.selectorOfSeries.click();
         Thread.sleep(10);
-        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(3));
+        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(5));
         webDriverWait.until(webDriver -> nOneSeries.isDisplayed());
         this.nOneSeries.click();
         return this;
@@ -100,14 +99,14 @@ public class PageGooglePlatformCalculator {
     public PageGooglePlatformCalculator selectMachineType() throws InterruptedException {
         this.machineTypeSelector.click();
         Thread.sleep(10);
-        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(3));
+        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(5));
         webDriverWait.until(webDriver -> nOneStandardOptionMachine.isDisplayed());
         this.nOneStandardOptionMachine.click();
         return this;
     }
     public PageGooglePlatformCalculator addGPUsOperations() {
         this.addGPUsCheckBox.click();
-        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(3));
+        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(5));
         webDriverWait.until(webDriver -> selectorTypeOfGPU.isDisplayed());
         this.selectorTypeOfGPU.click();
         webDriverWait.until(webDriver -> teslaTForeOption.isDisplayed());
@@ -120,23 +119,25 @@ public class PageGooglePlatformCalculator {
     }
     public PageGooglePlatformCalculator selectLocalSSD() {
         this.selectorOfSSDOptions.click();
-        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(3));
-        webDriverWait.until(webDriver -> selectSecondSSDOption.isDisplayed());
-        this.selectSecondSSDOption.click();
+        WebElement localSSDAmount = driver.findElement(By.xpath(xPathForSSDAmount));
+        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(5));
+        webDriverWait.until(webDriver -> localSSDAmount.isDisplayed());
+        localSSDAmount.click();
         return this;
     }
     public PageGooglePlatformCalculator selectRegionOption() {
         this.datacenterLocationOptions.click();
-        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(3));
+        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(5));
         webDriverWait.until(webDriver -> selectEuropeWestThirdOption.isDisplayed());
         this.selectEuropeWestThirdOption.click();
         return this;
     }
     public PageGooglePlatformCalculator selectCommittedUsageOptionAndAddToEstimate() {
         this.committedUsageSelector.click();
-        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(3));
-        webDriverWait.until(webDriver -> oneYearOptionForCommittedUsage.isDisplayed());
-        this.oneYearOptionForCommittedUsage.click();
+        WebElement committedUsage = driver.findElement(By.xpath(xPathForCommittedYear));
+        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(5));
+        webDriverWait.until(webDriver -> committedUsage.isDisplayed());
+        committedUsage.click();
         this.addToEstimateButton.click();
         return this;
     }
