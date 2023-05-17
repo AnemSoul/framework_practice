@@ -78,7 +78,7 @@ public class PageWhitEmailGenerator {
         this.buttonEmailEstimate.click();
         WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
         webDriverWait.until((webDriver -> emailArea.isEnabled()));
-        this.emailArea.sendKeys(Keys.chord(Keys.LEFT_CONTROL, "v"));
+        this.emailArea.sendKeys(Keys.chord(Keys.LEFT_CONTROL + "v"));
         return this;
     }
     public PageWhitEmailGenerator sendEmailAndGoToYopmailPage() {
