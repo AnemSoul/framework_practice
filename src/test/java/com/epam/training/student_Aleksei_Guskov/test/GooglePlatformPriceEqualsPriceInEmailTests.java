@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class GooglePlatformPriceEqualsPriceInEmailTests extends CommonConditions{
     @Test
-    public void testOfEqualsPriceInMailAndInGoogle() throws InterruptedException {
+    public void testOfEqualsPriceInMailAndInGoogle() {
         sendEmailOnTemporaryMail();
         PageWhitEmailGenerator pageWhitEmailGenerator = new PageWhitEmailGenerator(this.driver);
         String priceFromMail = pageWhitEmailGenerator.getTextFromEmail();

@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 
 public class PageWhitEmailGenerator {
     protected WebDriver driver;
+    protected static String finish = "";
     @FindBy (xpath = "//a[@href='email-generator']/div[2]")
     private WebElement buttonEmailGeneration;
     @FindBy (xpath = "//button[@onclick=\"clipboard('geny')\"]")
@@ -73,7 +74,7 @@ public class PageWhitEmailGenerator {
         }
         return finish;
     }
-    public PageWhitEmailGenerator onGooglePageClickEmailEstimate() throws InterruptedException {
+    public PageWhitEmailGenerator onGooglePageClickEmailEstimate() {
         this.buttonEmailEstimate.click();
         WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
         webDriverWait.until((webDriver -> emailArea.isEnabled()));
@@ -86,21 +87,25 @@ public class PageWhitEmailGenerator {
         this.driver.switchTo().window(tabs.get(1));
         return this;
     }
-    public PageWhitEmailGenerator checkTheMailButtonClick() throws InterruptedException {
-        Thread.sleep(5500);
+    public PageWhitEmailGenerator checkTheMailButtonClick() {
         this.buttonCheckTheMail.click();
         return this;
     }
     public String getTextFromEmail() {
-        WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(50));
-        webDriverWait.until(webDriver -> frameInMail.isEnabled());
-        this.driver.switchTo().frame(frameInMail);
-        Pattern pattern = Pattern.compile("[\\d,]*[\\d]{3}[\\.]{1}[\\d]{2}");
-        String start = this.areaWhitUSDPrice.getText();
-        String finish = "";
-        Matcher matcher = pattern.matcher(start);
-        while (matcher.find()) {
-            finish = matcher.group();
+        for (int i = 0; (i < 10) && (finish.equals("")); i++) {
+            try {
+                WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(3));
+                webDriverWait.until(webDriver -> frameInMail.isEnabled());
+                this.driver.switchTo().frame(frameInMail);
+                Pattern pattern = Pattern.compile("[\\d,]*[\\d]{3}[\\.]{1}[\\d]{2}");
+                String start = this.areaWhitUSDPrice.getText();
+                Matcher matcher = pattern.matcher(start);
+                while (matcher.find()) {
+                    finish = matcher.group();
+                }
+            } catch (Exception e) {
+                driver.navigate().refresh();
+            }
         }
         return finish;
     }

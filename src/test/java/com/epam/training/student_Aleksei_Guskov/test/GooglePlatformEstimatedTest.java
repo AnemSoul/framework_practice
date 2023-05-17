@@ -10,7 +10,7 @@ public class GooglePlatformEstimatedTest extends CommonConditions{
     SoftAssert softAssert = new SoftAssert();
     private static final String TOTAL_ESTIMATED = withCredentialsFromProperty().getTotalEstimated();
     @Test
-    public void testEqualsSelectedParameters() throws InterruptedException {
+    public void testEqualsSelectedParameters() {
         createNewPlatform();
         PageWhitEstimate pageWhitEstimate = new PageWhitEstimate(this.driver).examEstimateOnly();
         softAssert.assertEquals(pageWhitEstimate.getTextFromProvisioningModel(),

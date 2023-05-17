@@ -34,7 +34,7 @@ public class CommonConditions {
                 .imitationPressEnter()
                 .selectSearchResult();
     }
-    public void createNewPlatform() throws InterruptedException {
+    public void createNewPlatform() {
         openGoogleAndFindTheDesiredResult();
         new PageGooglePlatformCalculator(this.driver)
                 .searchComputeEngineOption()
@@ -48,7 +48,7 @@ public class CommonConditions {
                 .selectRegionOption()
                 .selectCommittedUsageOptionAndAddToEstimate();
     }
-    public void sendEmailOnTemporaryMail() throws InterruptedException {
+    public void sendEmailOnTemporaryMail() {
         createNewPlatform();
         new PageWhitEmailGenerator(this.driver)
                 .openNewPage()

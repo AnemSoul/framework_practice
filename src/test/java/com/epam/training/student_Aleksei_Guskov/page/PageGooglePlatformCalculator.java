@@ -88,17 +88,15 @@ public class PageGooglePlatformCalculator {
         this.regularProvisioningModel.click();
         return this;
     }
-    public PageGooglePlatformCalculator selectNOneSeries() throws InterruptedException {
+    public PageGooglePlatformCalculator selectNOneSeries() {
         this.selectorOfSeries.click();
-        Thread.sleep(10);
         WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(5));
         webDriverWait.until(webDriver -> nOneSeries.isDisplayed());
         this.nOneSeries.click();
         return this;
     }
-    public PageGooglePlatformCalculator selectMachineType() throws InterruptedException {
+    public PageGooglePlatformCalculator selectMachineType() {
         this.machineTypeSelector.click();
-        Thread.sleep(10);
         WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(5));
         webDriverWait.until(webDriver -> nOneStandardOptionMachine.isDisplayed());
         this.nOneStandardOptionMachine.click();
