@@ -16,10 +16,13 @@ import java.util.regex.Pattern;
 public class PageWhitEmailGenerator {
     protected WebDriver driver;
     protected static String finish = "";
+    protected static String newEmail = "";
     @FindBy (xpath = "//a[@href='email-generator']/div[2]")
     private WebElement buttonEmailGeneration;
     @FindBy (xpath = "//button[@onclick=\"clipboard('geny')\"]")
     private WebElement buttonCopyEmail;
+    @FindBy (xpath = "//div[@id='geny']")
+    private WebElement generationNewEMailArea;
     @FindBy (xpath = "//button[@title='Email Estimate']")
     private WebElement buttonEmailEstimate;
     @FindBy (xpath = "//input[@ng-model='emailQuote.user.email']")
@@ -54,7 +57,7 @@ public class PageWhitEmailGenerator {
         this.buttonEmailGeneration.click();
         WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
         webDriverWait.until((webDriver -> buttonCopyEmail.isEnabled()));
-        this.buttonCopyEmail.click();
+        newEmail = generationNewEMailArea.getText();
         return this;
     }
     public PageWhitEmailGenerator returnToTheGooglePage() {
@@ -78,7 +81,7 @@ public class PageWhitEmailGenerator {
         this.buttonEmailEstimate.click();
         WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
         webDriverWait.until((webDriver -> emailArea.isEnabled()));
-        this.emailArea.sendKeys(Keys.chord(Keys.LEFT_CONTROL + "v"));
+        this.emailArea.sendKeys(newEmail);
         return this;
     }
     public PageWhitEmailGenerator sendEmailAndGoToYopmailPage() {
