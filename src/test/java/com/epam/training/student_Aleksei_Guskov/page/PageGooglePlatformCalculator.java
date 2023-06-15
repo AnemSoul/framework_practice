@@ -130,13 +130,12 @@ public class PageGooglePlatformCalculator {
         this.selectEuropeWestThirdOption.click();
         return this;
     }
-    public PageGooglePlatformCalculator selectCommittedUsageOptionAndAddToEstimate() {
+    public void selectCommittedUsageOptionAndAddToEstimate() {
         this.committedUsageSelector.click();
         WebElement committedUsage = driver.findElement(By.xpath(xPathForCommittedYear));
         WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(5));
         webDriverWait.until(webDriver -> committedUsage.isDisplayed());
         committedUsage.click();
         this.addToEstimateButton.click();
-        return this;
     }
 }

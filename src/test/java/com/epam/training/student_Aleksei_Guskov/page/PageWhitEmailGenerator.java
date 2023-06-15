@@ -1,6 +1,5 @@
 package com.epam.training.student_Aleksei_Guskov.page;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
@@ -68,7 +67,7 @@ public class PageWhitEmailGenerator {
         return this;
     }
     public String getTexFromTotalEstimated() {
-        Pattern pattern = Pattern.compile("[\\d,]*[\\d]{3}[\\.]{1}[\\d]{2}");
+        Pattern pattern = Pattern.compile("[\\d,]*\\d{3}[.]\\d{2}");
         String start = this.totalEstimatedLine.getText();
         String finish = "";
         Matcher matcher = pattern.matcher(start);
@@ -90,9 +89,8 @@ public class PageWhitEmailGenerator {
         this.driver.switchTo().window(tabs.get(1));
         return this;
     }
-    public PageWhitEmailGenerator checkTheMailButtonClick() {
+    public void checkTheMailButtonClick() {
         this.buttonCheckTheMail.click();
-        return this;
     }
     public String getTextFromEmail() {
         for (int i = 0; (i < 10) && (finish.equals("")); i++) {
@@ -100,7 +98,7 @@ public class PageWhitEmailGenerator {
                 WebDriverWait webDriverWait = new WebDriverWait(this.driver, Duration.ofSeconds(3));
                 webDriverWait.until(webDriver -> frameInMail.isEnabled());
                 this.driver.switchTo().frame(frameInMail);
-                Pattern pattern = Pattern.compile("[\\d,]*[\\d]{3}[\\.]{1}[\\d]{2}");
+                Pattern pattern = Pattern.compile("[\\d,]*\\d{3}[.]\\d{2}");
                 String start = this.areaWhitUSDPrice.getText();
                 Matcher matcher = pattern.matcher(start);
                 while (matcher.find()) {

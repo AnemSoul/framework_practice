@@ -51,7 +51,7 @@ public class PageWhitEstimate {
         return this.commitmentTermLine.getText();
     }
     public String getTexFromTotalEstimated() {
-        Pattern pattern = Pattern.compile("[\\d,]*[\\d]{3}[\\.]{1}[\\d]{2}");
+        Pattern pattern = Pattern.compile("[\\d,]*\\d{3}[.]\\d{2}");
         String start = this.totalEstimatedLine.getText();
         String finish = "";
         Matcher matcher = pattern.matcher(start);
